@@ -1331,7 +1331,7 @@ function renderCapacity() {
         </div>
         <div style="height:32px;border-radius:6px;overflow:hidden;display:flex;border:1px solid #e8eaed;">
           <div style="width:${Math.min((totalLog/totalCap)*100,100)}%;background:#16a34a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;">${((totalLog/totalCap)*100).toFixed(0)}%</div>
-          <div style="flex:1;background:#fef2f2;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:11px;font-weight:600;">${Math.max(100-(totalLog/totalCap)*100,0).toFixed(0)}% unused</div>
+          <div style="flex:1;background:#fef2f2;"></div>
         </div>
         <div style="margin-top:20px;padding-top:16px;border-top:1px solid #f0f2f4;">
           <div style="font-size:11px;color:#9aa5b1;letter-spacing:1px;font-weight:700;margin-bottom:10px;">CAPACITY STATUS DISTRIBUTION</div>
@@ -1708,7 +1708,8 @@ function setChrome(showDashboardChrome) {
 function refresh() {
   if (currentView === 'settings') { setChrome(false); renderView('settings'); return; }
   setChrome(true);
-  renderKpis(); renderAlerts(); renderView(currentView);
+  document.getElementById('alertsRow').style.display = 'none'; // alert chips removed per review
+  renderKpis(); renderView(currentView);
 }
 
 function goView(view) {
